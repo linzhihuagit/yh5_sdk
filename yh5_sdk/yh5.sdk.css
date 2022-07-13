@@ -42,11 +42,13 @@
   background-color: #fff;
   margin          : 10px auto;
   border-radius   : 4px;
+  overflow        : hidden;
+  box-shadow      : 0 2px 5px rgb(0 0 0);
 }
 
 #more-game .game-icon {
-  width  : 100px;
-  height : 100px;
+  width  : 90px;
+  height : 90px;
   display: block;
   margin : 5px auto;
 }
@@ -58,4 +60,6 @@
   overflow     : hidden;
   text-overflow: ellipsis;
   white-space  : nowrap;
+  background   : url(./assets/box_ht_dk6.png) no-repeat center / auto 100%;
+  color        : #fff;
 }

@@ -21,17 +21,17 @@
       this.dialog.style.display = "none";
     }
     drawView() {
-      var panelHtml = `<div id="more-game"><div class="bg"></div><div class="container"><div class="header"><div class="close" id="close-more"></div></div><div class="content">`;
+      var panelHtml = `<div id="more-game"><div class="bg"></div><div class="container"><div class="header"><div class="close" id="close-more"></div></div><div class="content"><div class="list">`;
       for (let index = 0; index < this.dataSource.length; index++) {
-        panelHtml += this.drawElement(this.dataSource[index]);
+        panelHtml += this.drawElement(this.dataSource[index], index % 5 + 3);
       }
-      panelHtml += `</div></div></div></div>`;
+      panelHtml += `</div></div></div></div></div>`;
       document.body.appendChild(document.createRange().createContextualFragment(panelHtml));
     }
-    drawElement(data) {
+    drawElement(data, index) {
       return `<div class="list-item" onclick="window.open('${data.url}')">
         <img src="${data.icon}" alt="" class="game-icon">
-        <p class="game-title">${data.name}</p>
+        <p class="game-title" style="background-image:url(./yh5_sdk/assets/box_ht_dk${index}.png)">${data.name}</p>
       </div>`
     }
   }
