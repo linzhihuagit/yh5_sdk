@@ -1,0 +1,61 @@
+/* more-game */
+#more-game {
+  position : absolute;
+  left     : 50%;
+  top      : 50%;
+  transform: translate(-50%, -50%);
+  display  : none;
+  font-size: 14px;
+}
+
+#more-game .container {
+  width: 347px;
+}
+
+#more-game .header {
+  background: url(./assets/om_ht_02.png) no-repeat center/100% auto;
+  height    : 80px;
+}
+
+#more-game .close {
+  background: url(./assets/bt_ht_gb.png) no-repeat center/100% auto;
+  width     : 25px;
+  height    : 25px;
+  position  : absolute;
+  top       : 45px;
+  right     : 10px;
+}
+
+#more-game .content {
+  background-color: #bee1fd;
+  padding         : 10px 0;
+}
+
+#more-game .list {
+  display        : flex;
+  flex-wrap      : wrap;
+  justify-content: space-around;
+}
+
+#more-game .list-item {
+  width           : 30%;
+  background-color: #fff;
+  margin          : 10px auto;
+  border-radius   : 4px;
+}
+
+#more-game .game-icon {
+  width  : 100px;
+  height : 100px;
+  display: block;
+  margin : 5px auto;
+}
+
+#more-game .game-title {
+  margin       : auto;
+  line-height  : 24px;
+  text-align   : center;
+  overflow     : hidden;
+  text-overflow: ellipsis;
+  white-space  : nowrap;
+}
