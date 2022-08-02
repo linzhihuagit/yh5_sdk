@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 /* more-game */
 #more-game {
   position : absolute;
@@ -61,5 +65,56 @@
   text-overflow: ellipsis;
   white-space  : nowrap;
   background   : url(./assets/box_ht_dk6.png) no-repeat center / auto 100%;
+  color        : #fff;
+}
+
+
+/* game-banner */
+#game-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: none;
+  font-size: 14px;
+  width: 100%;
+  max-width: 750px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#game-banner .container {
+  width: 100%;
+}
+
+#game-banner .content {
+  padding         : 5px 0;
+}
+
+#game-banner .list {
+  display        : flex;
+  flex-wrap      : wrap;
+  justify-content: space-around;
+}
+
+#game-banner .list-item {
+  width: 80px;
+  border-radius   : 4px;
+  overflow        : hidden;
+}
+
+#game-banner .game-icon {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 5px auto;
+}
+
+#game-banner .game-title {
+  margin       : auto;
+  line-height  : 20px;
+  text-align   : center;
+  overflow     : hidden;
+  text-overflow: ellipsis;
+  white-space  : nowrap;
   color        : #fff;
 }
