@@ -71,14 +71,14 @@ a {
 
 /* game-banner */
 #game-banner {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  display: none;
-  font-size: 14px;
-  width: 100%;
-  max-width: 750px;
+  position        : fixed;
+  left            : 50%;
+  bottom          : 0;
+  transform       : translateX(-50%);
+  display         : none;
+  font-size       : 14px;
+  width           : 100%;
+  max-width       : 750px;
   background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -87,7 +87,8 @@ a {
 }
 
 #game-banner .content {
-  padding         : 5px 0;
+  padding : 5px 0;
+  overflow: hidden;
 }
 
 #game-banner .list {
@@ -97,16 +98,16 @@ a {
 }
 
 #game-banner .list-item {
-  width: 80px;
-  border-radius   : 4px;
-  overflow        : hidden;
+  width        : 90px;
+  border-radius: 4px;
+  overflow     : hidden;
 }
 
 #game-banner .game-icon {
-  width: 80px;
-  height: 80px;
+  width  : 80px;
+  height : 80px;
   display: block;
-  margin: 5px auto;
+  margin : 5px auto;
 }
 
 #game-banner .game-title {
@@ -117,4 +118,5 @@ a {
   text-overflow: ellipsis;
   white-space  : nowrap;
   color        : #fff;
+  font-size    : 10px;
 }

@@ -29,7 +29,7 @@
       document.body.appendChild(document.createRange().createContextualFragment(panelHtml));
     }
     drawElement(data, index) {
-      return `<a class="list-item" href="${top.location.origin}${data.url}${data.icon_tag}&from_app=${window.yh5.appId}" target="_blank">
+      return `<a class="list-item" href="${top.location.origin}${data.url}${data.icon_tag}&from_yapp=${window.yh5.appId}" target="_blank">
         <img src="${data.icon}" alt="" class="game-icon">
         <p class="game-title" style="background-image:url(./yh5_sdk/assets/box_ht_dk${index}.png)">${data.name}</p>
       </a>`
@@ -40,23 +40,62 @@
       this.isShow = false;
       this.banner = null;
       this.listContent = null;
+      this.bannerList = null;
       this.dataSource = data;
+      this.timeInterval = null;
+      this.scrollDir = 1;
+      this.maxScrollWidth = 0;
+      this.isPause = false;
+      this.pauseTime = 0;
       this.drawView();
     }
     show() {
       if (!this.banner) {
         this.banner = document.getElementById("game-banner");
         this.listContent = document.getElementById("listContent");
+        this.bannerList = document.getElementById("bannerList");
       }
       this.banner.style.display = "block";
       this.isShow = true;
+      var that = this;
+      this.maxScrollWidth = this.bannerList.clientWidth - this.listContent.clientWidth;
+      this.listContent.scrollLeft = 0;
+      this.timeInterval = setInterval(function () {
+        if (that.listContent) {
+          if (that.isPause) {
+            that.pauseTime += 20;
+            if (that.pauseTime >= 1500) {
+              that.isPause = false;
+              that.pauseTime = 0;
+              if (that.scrollDir > 0) {
+                that.scrollDir = -1;
+              } else if (that.scrollDir < 0) {
+                that.scrollDir = 1;
+              }
+            }
+          } else {
+            that.listContent.scrollLeft += that.scrollDir;
+            if (that.listContent.scrollLeft >= that.maxScrollWidth || that.listContent.scrollLeft <= 0) {
+              that.isPause = true;
+            }
+          }
+        }
+      }, 20);
     }
     hide() {
       this.banner.style.display = "none";
       this.isShow = false;
+      if (this.timeInterval) {
+        this.isPause = false;
+        this.pauseTime = 0;
+        this.scrollDir = 1;
+        this.listContent.scrollLeft = 0;
+        clearInterval(this.timeInterval);
+        this.timeInterval = null;
+      }
     }
     drawView() {
-      var panelHtml = `<div id="game-banner"><div class="bg"></div><div id="listContent" class="container"><div class="content"><div class="list">`;
+      var panelHtml = `<div id="game-banner"><div class="bg"></div><div class="container"><div class="content" id="listContent" ><div class="list" id="bannerList" style="width:${this.dataSource.length * 90}px">`;
       for (let index = 0; index < this.dataSource.length; index++) {
         panelHtml += this.drawElement(this.dataSource[index], index % 5 + 3);
       }
@@ -64,7 +103,7 @@
       document.body.appendChild(document.createRange().createContextualFragment(panelHtml));
     }
     drawElement(data, index) {
-      return `<a class="list-item" href="${top.location.origin}${data.url}${data.icon_tag}&from_app=${window.yh5.appId}" target="_blank">
+      return `<a class="list-item" href="${top.location.origin}${data.url}${data.icon_tag}&from_yapp=${window.yh5.appId}" target="_blank">
         <img src="${data.icon}" alt="" class="game-icon">
         <p class="game-title" >${data.name}</p>
       </a>`
