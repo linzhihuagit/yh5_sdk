@@ -56,7 +56,7 @@
         this.listContent = document.getElementById("listContent");
         this.bannerList = document.getElementById("bannerList");
       }
-      if (!window.yh5.canShowAd()) return;
+      if (!window.yh5.canShowAd() || this.timeInterval) return;
       
       this.banner.style.display = "block";
       this.isShow = true;
@@ -84,9 +84,10 @@
           }
         }
       }, 20);
+      console.log("showBanner");
     }
     hide() {
-      this.banner.style.display = "none";
+      this.banner && (this.banner.style.display = "none");
       this.isShow = false;
       if (this.timeInterval) {
         this.isPause = false;
@@ -96,6 +97,7 @@
         clearInterval(this.timeInterval);
         this.timeInterval = null;
       }
+      console.log("hideBanner");
     }
     drawView() {
       var panelHtml = `<div id="game-banner"><div class="bg"></div><div class="container"><div class="content" id="listContent" ><div class="list" id="bannerList" style="width:${this.dataSource.length * 90}px">`;
@@ -114,7 +116,7 @@
   }
   class YH5 {
     constructor() {
-      this.initTime = Math.round((new Date).getTime()/1000);
+      this.initTime = Math.round((new Date()).getTime()/1000);
       this.appId = window.yh5_config.app_id;
       this.moreGame = null;
       this.gameBanner = null;
@@ -132,7 +134,7 @@
       this.gameBanner.init(window.yh5_config.more_game_config);
     }
     canShowAd() {
-      return Math.round((new Date).getTime()/1000) - this.initTime > 60;
+      return Math.round((new Date()).getTime()/1000) - this.initTime > 60;
     }
   }
   window.yh5 = new YH5();
