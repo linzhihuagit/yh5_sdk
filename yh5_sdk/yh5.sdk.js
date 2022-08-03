@@ -15,6 +15,7 @@
           this.hide();
         })
       }
+      if (!window.yh5.canShowAd()) return;
       this.dialog.style.display = "block";
     }
     hide() {
@@ -29,7 +30,7 @@
       document.body.appendChild(document.createRange().createContextualFragment(panelHtml));
     }
     drawElement(data, index) {
-      return `<a class="list-item" href="${top.location.origin}${data.url}${data.icon_tag}&from_yapp=${window.yh5.appId}" target="_blank">
+      return `<a class="list-item" href="${window.yh5.topDomain}${data.url}${data.icon_tag}&from_yapp=${window.yh5.appId}" target="_blank">
         <img src="${data.icon}" alt="" class="game-icon">
         <p class="game-title" style="background-image:url(./yh5_sdk/assets/box_ht_dk${index}.png)">${data.name}</p>
       </a>`
@@ -55,6 +56,8 @@
         this.listContent = document.getElementById("listContent");
         this.bannerList = document.getElementById("bannerList");
       }
+      if (!window.yh5.canShowAd()) return;
+      
       this.banner.style.display = "block";
       this.isShow = true;
       var that = this;
@@ -103,7 +106,7 @@
       document.body.appendChild(document.createRange().createContextualFragment(panelHtml));
     }
     drawElement(data, index) {
-      return `<a class="list-item" href="${top.location.origin}${data.url}${data.icon_tag}&from_yapp=${window.yh5.appId}" target="_blank">
+      return `<a class="list-item" href="${window.yh5.topDomain}${data.url}${data.icon_tag}&from_yapp=${window.yh5.appId}" target="_blank">
         <img src="${data.icon}" alt="" class="game-icon">
         <p class="game-title" >${data.name}</p>
       </a>`
@@ -111,15 +114,25 @@
   }
   class YH5 {
     constructor() {
+      this.initTime = Math.round((new Date).getTime()/1000);
       this.appId = window.yh5_config.app_id;
       this.moreGame = null;
       this.gameBanner = null;
+      this.topDomain = "https://yandex.com";
+      if(location.ancestorOrigins && location.ancestorOrigins.length) {
+        this.topDomain = location.ancestorOrigins[location.ancestorOrigins.length-1];
+      }
     }
     initMoreGame() {
       this.moreGame = new MoreGame;
       this.moreGame.init(window.yh5_config.more_game_config);
+    }
+    initGameBanner() {
       this.gameBanner = new GameBanner;
       this.gameBanner.init(window.yh5_config.more_game_config);
+    }
+    canShowAd() {
+      return Math.round((new Date).getTime()/1000) - this.initTime > 60;
     }
   }
   window.yh5 = new YH5();
