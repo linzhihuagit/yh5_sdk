@@ -69,6 +69,98 @@ a {
   color        : #fff;
 }
 
+/* more-game2 */
+#more-game2 {
+  position : absolute;
+  left     : 50%;
+  top      : 50%;
+  transform: translate(-50%, -50%);
+  display  : none;
+  font-size: 14px;
+  z-index  : 999;
+}
+
+#more-game2 .container {
+  width: 240px;
+}
+
+#more-game2 .list {
+  display        : flex;
+  flex-wrap      : wrap;
+  justify-content: space-around;
+}
+
+#more-game2 .list-item {
+  width        : 30%;
+  margin-top   : 2px;
+  border-radius: 4px;
+  overflow     : hidden;
+}
+
+#more-game2 .game-icon {
+  width  : 70px;
+  height : 70px;
+  display: block;
+}
+
+#more-game2 .game-title {
+  margin       : auto;
+  line-height  : 24px;
+  text-align   : center;
+  overflow     : hidden;
+  text-overflow: ellipsis;
+  white-space  : nowrap;
+  color        : #fff;
+  font-size    : 12px;
+  text-shadow  : 1px 1px 0 black;
+}
+
+
+/* custom-box */
+.custom-box {
+  position : absolute;
+  left     : 0;
+  top      : 0;
+  display  : none;
+  font-size: 14px;
+  z-index  : 999;
+}
+
+.custom-box .container {
+  width     : 60px;
+  text-align: center;
+}
+
+.custom-box .list {
+  display        : flex;
+  flex-wrap      : wrap;
+  justify-content: space-around;
+}
+
+.custom-box .list-item {
+  margin-top   : 2px;
+  border-radius: 4px;
+  overflow     : hidden;
+}
+
+.custom-box .game-icon {
+  width  : 50px;
+  height : 50px;
+  display: block;
+  margin : 0 auto;
+}
+
+.custom-box .game-title {
+  margin       : auto;
+  line-height  : 20px;
+  text-align   : center;
+  overflow     : hidden;
+  text-overflow: ellipsis;
+  white-space  : nowrap;
+  color        : #fff;
+  font-size    : 12px;
+  text-shadow  : 1px 1px 0 black;
+}
 
 /* game-banner */
 #game-banner {

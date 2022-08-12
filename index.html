@@ -13,11 +13,18 @@
 
 <body>
   <button onclick="yh5.moreGame.show()">展示</button>
+  <button onclick="yh5.moreGame2.show()">展示2</button>
+  <button onclick="yh5.moreGame2.hide()">关闭2</button>
   <button onclick="yh5.gameBanner.show()">展示banner</button>
   <button onclick="yh5.gameBanner.hide()">关闭banner</button>
+  <button onclick="yh5.showCustomBox('custom3')">展示custom</button>
+  <button onclick="yh5.hideCustomBox('custom3')">关闭custom</button>
   <script>
     window.onload = function () {
       yh5.initMoreGame();
+      yh5.initMoreGame2();
+      yh5.initGameBanner();
+      yh5.initCustomBox("custom3", { show_len: 3, left: 0, top: '50%' });
     }
   </script>
 </body>
