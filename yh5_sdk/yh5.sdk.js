@@ -79,7 +79,7 @@
       this.customList = null;
       this.btnClose = null;
       this.dataSource = data;
-      this.nextIndex = 0;
+      this.nextIndex = info.start ? info.start - 1 : 0;
       this.drawView();
     }
     show() {
@@ -87,7 +87,7 @@
         this.dialog = document.getElementById("custom-box" + this.customId);
         this.customList = document.getElementById("custom-list" + this.customId);
       }
-      if (!window.yh5.canShowAd()) return;
+      if (!window.yh5.canShowAd() || this.timeInterval) return;
       this.dialog.style.display = "block";
       var self = this;
       this.timeInterval = setInterval(function () {
@@ -102,11 +102,11 @@
       }
     }
     drawView() {
-      var panelHtml = `<div id="custom-box${this.customId}" class="custom-box" style="${this.left?"left:"+this.left+";":""}${this.right?"right:"+this.right+";":""}${this.top?"top:"+this.top+";":""}"><div class="bg"></div><div class="container"><div class="content"><div id="custom-list${this.customId}" class="list">`;
+      var panelHtml = `<div id="custom-box${this.customId}" class="custom-box" style="${this.left ? "left:" + this.left + ";" : ""}${this.right ? "right:" + this.right + ";" : ""}${this.top ? "top:" + this.top + ";" : ""}"><div class="bg"></div><div class="container"><div class="content"><div id="custom-list${this.customId}" class="list">`;
       for (let index = 0; index < this.showLen; index++) {
         this.nextIndex = this.nextIndex % this.dataSource.length;
         panelHtml += this.drawElement(this.dataSource[this.nextIndex]);
-        this.nextIndex+=1;
+        this.nextIndex += 1;
       }
       panelHtml += `</div></div></div></div></div>`;
       document.body.appendChild(document.createRange().createContextualFragment(panelHtml));
@@ -122,7 +122,7 @@
       for (let index = 0; index < this.showLen; index++) {
         this.nextIndex = this.nextIndex % this.dataSource.length;
         panelHtml += this.drawElement(this.dataSource[this.nextIndex]);
-        this.nextIndex+=1;
+        this.nextIndex += 1;
       }
       this.customList.innerHTML = panelHtml;
     }
@@ -236,6 +236,7 @@
     }
     showCustomBox(tag) {
       this.customBox[tag].show();
+      console.log(this.customBox[tag]);
     }
     hideCustomBox(tag) {
       this.customBox[tag].hide();
