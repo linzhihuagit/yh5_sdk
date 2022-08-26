@@ -119,8 +119,6 @@ a {
 /* custom-box */
 .custom-box {
   position : absolute;
-  left     : 0;
-  top      : 0;
   display  : none;
   font-size: 14px;
   z-index  : 999;
