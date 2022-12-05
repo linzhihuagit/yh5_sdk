@@ -205,6 +205,23 @@
       </a>`
     }
   }
+  class MoreBtn {
+    init(info) {
+      this.type = !info.type ? 1 : info.type;
+      this.left = info.left ? info.left : null;
+      this.right = info.left ? info.right : null;
+      this.top = info.top ? info.top : null;
+      this.openUrl = window.yh5.topDomain + "/games/developer?name=Linder";
+      this.btnIcon = `./yh5_sdk/assets/btnMore${this.type}.png`;
+      this.drawView();
+    }
+    drawView() {
+      var btnHtml = `<a id="btn-more" href="${this.openUrl}" target="_blank" style="position: absolute;${this.left ? "left:" + this.left + ";" : ""}${this.right ? "right:" + this.right + ";" : ""}${this.top ? "top:" + this.top + ";" : ""}">
+        <img src="${this.btnIcon}" alt="" style="width:60px;height:60px;">
+      </a>`;
+      document.body.appendChild(document.createRange().createContextualFragment(btnHtml));
+    }
+  }
   class YH5 {
     constructor() {
       this.initTime = Math.round((new Date()).getTime() / 1000);
@@ -212,6 +229,7 @@
       this.moreGame = null;
       this.moreGame2 = null;
       this.gameBanner = null;
+      this.btnMore = null;
       this.customBox = {};
       this.topDomain = "https://yandex.com";
       if (location.ancestorOrigins && location.ancestorOrigins.length) {
@@ -240,6 +258,10 @@
     }
     hideCustomBox(tag) {
       this.customBox[tag].hide();
+    }
+    initBtnMore(info) {
+      this.btnMore = new MoreBtn();
+      this.btnMore.init(info);
     }
     canShowAd() {
       let hostname = location.hostname;
